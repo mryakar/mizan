@@ -2,6 +2,7 @@ plugins {
     java
     groovy
     alias(libs.plugins.spotless)
+    alias(libs.plugins.jooq.docker)
 }
 
 group = "me.yakar"
@@ -18,9 +19,32 @@ repositories {
 }
 
 dependencies {
+    jdbc(libs.postgresql)
+
+    implementation(libs.jooq)
+    implementation(libs.flyway.core)
+
+    runtimeOnly(libs.flyway.postgresql)
+    runtimeOnly(libs.postgresql)
+
     testImplementation(libs.groovy)
     testImplementation(libs.spock.core)
+    testImplementation(libs.testcontainers.postgresql)
     testRuntimeOnly(libs.junit.platform.launcher)
+}
+
+jooq {
+    image {
+        tag = "18.6"
+    }
+}
+
+tasks {
+    generateJooqClasses {
+        schemas = arrayOf("public")
+        basePackageName = "me.yakar.mizan.db"
+        outputDirectory.set(layout.buildDirectory.dir("generated-jooq"))
+    }
 }
 
 tasks.test {
@@ -32,6 +56,7 @@ tasks.test {
 
 spotless {
     java {
+        targetExclude("build/generated-jooq/**")
         googleJavaFormat()
         removeUnusedImports()
         trimTrailingWhitespace()

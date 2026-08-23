@@ -3,11 +3,23 @@ groovy = "4.0.33"
 spock = "2.4-groovy-4.0"
 junit-platform = "1.11.4"
 spotless = "8.10.0"
+jooq = "3.20.18"
+jooq-docker = "0.3.14"
+postgresql = "42.7.13"
+flyway = "13.3.0"
+testcontainers = "1.21.4"
 
 [libraries]
 groovy = { module = "org.apache.groovy:groovy", version.ref = "groovy" }
 spock-core = { module = "org.spockframework:spock-core", version.ref = "spock" }
 junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit-platform" }
 
+jooq = { module = "org.jooq:jooq", version.ref = "jooq" }
+postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
+flyway-core = { module = "org.flywaydb:flyway-core", version.ref = "flyway" }
+flyway-postgresql = { module = "org.flywaydb:flyway-database-postgresql", version.ref = "flyway" }
+testcontainers-postgresql = { module = "org.testcontainers:postgresql", version.ref = "testcontainers" }
+
 [plugins]
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+jooq-docker = { id = "com.revolut.jooq-docker", version.ref = "jooq-docker" }
