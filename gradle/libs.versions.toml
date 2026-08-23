@@ -1,0 +1,13 @@
+[versions]
+groovy = "4.0.33"
+spock = "2.4-groovy-4.0"
+junit-platform = "1.11.4"
+spotless = "8.10.0"
+
+[libraries]
+groovy = { module = "org.apache.groovy:groovy", version.ref = "groovy" }
+spock-core = { module = "org.spockframework:spock-core", version.ref = "spock" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit-platform" }
+
+[plugins]
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
