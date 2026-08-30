@@ -26,6 +26,7 @@ dependencies {
 
     runtimeOnly(libs.flyway.postgresql)
     runtimeOnly(libs.postgresql)
+    runtimeOnly(libs.logback.classic)
 
     testImplementation(libs.groovy)
     testImplementation(libs.spock.core)
