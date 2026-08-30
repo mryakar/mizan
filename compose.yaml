@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:18.6
+    container_name: mizan-postgres
+    environment:
+      POSTGRES_DB: ${MIZAN_DB_NAME:-mizan}
+      POSTGRES_USER: ${MIZAN_DB_USERNAME:-mizan}
+      POSTGRES_PASSWORD: ${MIZAN_DB_PASSWORD:-mizan}
+    ports:
+      - "${MIZAN_DB_PORT:-5432}:5432"
+    volumes:
+      - mizan-postgres-data:/var/lib/postgresql
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${MIZAN_DB_USERNAME:-mizan} -d ${MIZAN_DB_NAME:-mizan}" ]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  mizan-postgres-data:
