@@ -1,6 +1,7 @@
 plugins {
     java
     groovy
+    jacoco
     application
     alias(libs.plugins.spotless)
     alias(libs.plugins.jooq.docker)

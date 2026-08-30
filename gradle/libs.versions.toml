@@ -8,6 +8,7 @@ jooq-docker = "0.3.14"
 postgresql = "42.7.13"
 flyway = "13.3.0"
 testcontainers = "1.21.4"
+logback = "1.6.3"
 
 [libraries]
 groovy = { module = "org.apache.groovy:groovy", version.ref = "groovy" }
