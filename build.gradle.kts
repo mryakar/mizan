@@ -1,6 +1,7 @@
 plugins {
     java
     groovy
+    application
     alias(libs.plugins.spotless)
     alias(libs.plugins.jooq.docker)
 }
@@ -12,6 +13,10 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
     }
+}
+
+application {
+    mainClass.set("me.yakar.mizan.MizanApplication")
 }
 
 repositories {
@@ -57,7 +62,7 @@ tasks.test {
 
 spotless {
     java {
-        targetExclude("build/generated-jooq/**")
+        target("src/**/*.java")
         googleJavaFormat()
         removeUnusedImports()
         trimTrailingWhitespace()
