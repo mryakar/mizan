@@ -3,11 +3,39 @@ groovy = "4.0.33"
 spock = "2.4-groovy-4.0"
 junit-platform = "1.11.4"
 spotless = "8.10.0"
+jooq = "3.20.18"
+jooq-docker = "0.3.14"
+postgresql = "42.7.13"
+flyway = "13.3.0"
+testcontainers = "1.21.4"
+javalin = "7.2.3"
+jackson = "2.22.2"
+hikaricp = "7.1.0"
+logback = "1.6.3"
+swagger-request-validator = "2.46.1"
+pitest-plugin = "1.19.0"
 
 [libraries]
-groovy = { module = "org.apache.groovy:groovy", version.ref = "groovy" }
+groovy-core = { module = "org.apache.groovy:groovy", version.ref = "groovy" }
+groovy-json = { module = "org.apache.groovy:groovy-json", version.ref = "groovy" }
 spock-core = { module = "org.spockframework:spock-core", version.ref = "spock" }
 junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit-platform" }
 
+jooq = { module = "org.jooq:jooq", version.ref = "jooq" }
+postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
+flyway-core = { module = "org.flywaydb:flyway-core", version.ref = "flyway" }
+flyway-postgresql = { module = "org.flywaydb:flyway-database-postgresql", version.ref = "flyway" }
+hikaricp = { module = "com.zaxxer:HikariCP", version.ref = "hikaricp" }
+
+javalin = { module = "io.javalin:javalin", version.ref = "javalin" }
+jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
+jackson-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson" }
+logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+
+testcontainers-postgresql = { module = "org.testcontainers:postgresql", version.ref = "testcontainers" }
+swagger-request-validator = { module = "com.atlassian.oai:swagger-request-validator-core", version.ref = "swagger-request-validator" }
+
 [plugins]
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+jooq-docker = { id = "com.revolut.jooq-docker", version.ref = "jooq-docker" }
+pitest = { id = "info.solidsoft.pitest", version.ref = "pitest-plugin" }
