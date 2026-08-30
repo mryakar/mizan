@@ -18,15 +18,15 @@ public class ProblemDetailHandlers {
     configuration.routes.exception(Exception.class, this::unexpected);
   }
 
-  private void invalidRequest(ValidationException failure, Context context) {
+  void invalidRequest(ValidationException failure, Context context) {
     respond(context, ProblemDetail.invalidRequest(failure.getMessage(), failure.field()));
   }
 
-  private void notFound(NotFoundException failure, Context context) {
+  void notFound(NotFoundException failure, Context context) {
     respond(context, ProblemDetail.notFound(failure.getMessage()));
   }
 
-  private void unexpected(Exception failure, Context context) {
+  void unexpected(Exception failure, Context context) {
     LOG.error("Unhandled failure while serving {} {}", context.method(), context.path(), failure);
     respond(context, ProblemDetail.internalError());
   }
