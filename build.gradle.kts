@@ -29,6 +29,10 @@ dependencies {
 
     implementation(libs.jooq)
     implementation(libs.flyway.core)
+    implementation(libs.hikaricp)
+    implementation(libs.javalin)
+    implementation(libs.jackson.databind)
+    implementation(libs.jackson.jsr310)
 
     runtimeOnly(libs.flyway.postgresql)
     runtimeOnly(libs.postgresql)
