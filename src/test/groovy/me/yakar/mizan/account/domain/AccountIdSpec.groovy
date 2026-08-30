@@ -35,15 +35,29 @@ class AccountIdSpec extends Specification {
         failure.field() == 'id'
     }
 
-    def "a malformed id is rejected"() {
+    def "an absent id is reported as missing rather than malformed"() {
         when:
         AccountId.parse(candidate)
 
         then:
         def failure = thrown(ValidationException)
         failure.field() == 'id'
+        failure.message == 'Account id is required'
 
         where:
-        candidate << [null, '', '   ', 'not-a-uuid', '123']
+        candidate << [null, '', '   ', '\t\n']
+    }
+
+    def "a malformed id is reported as unusable rather than missing"() {
+        when:
+        AccountId.parse(candidate)
+
+        then:
+        def failure = thrown(ValidationException)
+        failure.field() == 'id'
+        failure.message == 'Account id must be a UUID'
+
+        where:
+        candidate << ['not-a-uuid', '123', 'x' * 36]
     }
 }

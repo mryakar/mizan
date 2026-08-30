@@ -15,15 +15,29 @@ class CurrenciesSpec extends Specification {
         candidate << ['TRY', 'try', ' TRY ', 'tRy']
     }
 
-    def "an unknown or malformed code is rejected"() {
+    def "an absent code is reported as missing rather than invalid"() {
         when:
         Currencies.parse(candidate)
 
         then:
         def failure = thrown(ValidationException)
         failure.field() == 'currency'
+        failure.message == 'Currency is required'
 
         where:
-        candidate << [null, '', '   ', 'TR', 'abc', 'XX1', 'TURKISH']
+        candidate << [null, '', '   ', '\t\n']
+    }
+
+    def "an unknown code is reported as invalid rather than missing"() {
+        when:
+        Currencies.parse(candidate)
+
+        then:
+        def failure = thrown(ValidationException)
+        failure.field() == 'currency'
+        failure.message == 'Currency must be a valid ISO-4217 code'
+
+        where:
+        candidate << ['TR', 'abc', 'XX1', 'TURKISH']
     }
 }
