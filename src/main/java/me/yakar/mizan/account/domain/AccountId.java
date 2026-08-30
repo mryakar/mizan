@@ -2,7 +2,6 @@ package me.yakar.mizan.account.domain;
 
 import java.util.UUID;
 import me.yakar.mizan.shared.error.ValidationException;
-import org.jetbrains.annotations.NotNull;
 
 public record AccountId(UUID value) {
 
